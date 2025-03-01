@@ -363,12 +363,32 @@
         >
       </div>
 
+      <!-- Customer Information -->
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">
+          Adresse e-mail
+        </label>
+        <input 
+          type="email" 
+          id="customerEmail"
+          placeholder="votrenom@example.com"
+          class="w-full p-2 border rounded focus:border-green-500 focus:ring-1 focus:ring-green-500"
+        >
+      </div>
+
       <!-- Price Summary -->
       <div id="priceSummary" class="mb-4 p-4 bg-green-50 rounded-lg hidden">
         <h4 class="font-bold mb-2">Résumé du prix</h4>
         <div class="flex justify-between items-center">
           <span>Total</span>
           <span id="totalPrice" class="text-xl font-bold">0€</span>
+        </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="mb-4">
+        <div id="payment-element">
+          <!-- Stripe Elements will be inserted here -->
         </div>
       </div>
 
@@ -391,6 +411,8 @@
 
 <!-- Add this script tag right before the closing </body> tag -->
 <script>
+// Initialize Stripe with your publishable key
+const stripe = Stripe('pk_test_51O5YFvIPykk5CuXnTMSqOqxlmhRjaPpDOOZ0YXPmMQjjVNUPpW2YUGNKopYLOVcTUX8kBDw9vpffALBNFkMAYmUs00xJyO5YAu');
 let currentPrice = 0;
 let currentRoom = '';
 
@@ -434,6 +456,7 @@ function resetForm() {
   document.getElementById('checkIn').value = '';
   document.getElementById('checkOut').value = '';
   document.getElementById('guestCount').value = '1';
+  document.getElementById('customerEmail').value = '';
   document.getElementById('priceSummary').classList.add('hidden');
   document.getElementById('errorMessage').classList.add('hidden');
   document.getElementById('bookButton').disabled = true;
@@ -451,7 +474,7 @@ function updatePrice() {
     const total = nights * currentPrice;
     
     document.getElementById('totalPrice').textContent = `${total}€`;
-    document.getElementById('bookButtonText').textContent = `Réserver maintenant • ${total}€`;
+    document.getElementById('bookButtonText').textContent = `Payer maintenant • ${total}€`;
     bookButton.disabled = false;
     priceSummary.classList.remove('hidden');
   } else {
@@ -465,23 +488,79 @@ async function handleBooking() {
   const bookButton = document.getElementById('bookButton');
   const errorMessage = document.getElementById('errorMessage');
   const buttonText = document.getElementById('bookButtonText');
+  const customerEmail = document.getElementById('customerEmail').value;
+  const checkIn = document.getElementById('checkIn').value;
+  const checkOut = document.getElementById('checkOut').value;
+  const guestCount = document.getElementById('guestCount').value;
+  
+  if (!customerEmail) {
+    errorMessage.textContent = 'Veuillez entrer votre adresse email.';
+    errorMessage.classList.remove('hidden');
+    return;
+  }
   
   try {
     bookButton.disabled = true;
-    buttonText.textContent = 'Traitement en cours...';
+    buttonText.textContent = 'Redirection vers Stripe...';
     errorMessage.classList.add('hidden');
     
-    // Here you would integrate with Stripe
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+    // Calculate price
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+    const nights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+    const totalPrice = nights * currentPrice;
     
-    alert('Réservation réussie ! En production, vous seriez redirigé vers Stripe.');
-    closeModal();
+    // Create Stripe Checkout Session
+    // In a real app, this would be an API call to your server
+    // For demonstration, we'll simulate a redirect to Stripe Checkout
+    
+    // Example Stripe Checkout redirect URL (replace with your actual implementation)
+    const stripeParams = {
+      mode: 'payment',
+      success_url: window.location.href + '?success=true',
+      cancel_url: window.location.href,
+      line_items: [
+        {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: `${currentRoom} - ${nights} nuit(s)`,
+              description: `Du ${checkIn} au ${checkOut} pour ${guestCount} personne(s)`,
+            },
+            unit_amount: currentPrice * 100, // Stripe requires amount in cents
+          },
+          quantity: nights,
+        },
+      ],
+      customer_email: customerEmail,
+    };
+    
+    // In a real implementation, your server would create the Checkout Session and return the ID
+    // Here we're simulating for demonstration purposes
+    const simulatedCheckoutSessionId = 'cs_test_' + Math.random().toString(36).substr(2, 9);
+    
+    // Redirect to Stripe Checkout
+    // In a real implementation, you would use:
+    // stripe.redirectToCheckout({ sessionId: response.id });
+    
+    // For demo, we'll display an alert and close the modal
+    setTimeout(() => {
+      alert('Dans une implémentation réelle, vous seriez redirigé vers Stripe Checkout pour le paiement de ' + totalPrice + '€');
+      
+      // Create a link to a simulated Stripe Checkout page
+      const stripeUrl = 'https://checkout.stripe.com/pay/' + simulatedCheckoutSessionId;
+      
+      // Open the Stripe Checkout page
+      window.open(stripeUrl, '_blank');
+      
+      closeModal();
+    }, 1500);
+    
   } catch (error) {
     errorMessage.textContent = 'Une erreur est survenue. Veuillez réessayer.';
     errorMessage.classList.remove('hidden');
-  } finally {
     bookButton.disabled = false;
-    updatePrice();
+    buttonText.textContent = 'Réserver maintenant';
   }
 }
 
