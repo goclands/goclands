@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goclands - Trouvez le pied à terre idéal</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #10b981;
+        --primary-dark: #059669;
+        --primary-light: #d1fae5;
+      }
+
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("./img/montparnasse.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .booking-card {
+        transition: transform 0.3s ease;
+      }
+
+      .booking-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .custom-shadow {
+        box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1),
+          0 2px 4px -1px rgba(16, 185, 129, 0.06);
+      }
+    </style>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a93eeb19-cb40-488f-a382-5dd894a68ca7";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <span class="text-2xl font-bold text-green-600">Goclands</span>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#" class="text-gray-600 hover:text-green-600">Accueil</a>
+            <a href="#chambres" class="text-gray-600 hover:text-green-600"
+              >Chambres</a
+            >
+            <a href="#communaute" class="text-gray-600 hover:text-green-600"
+              >Communauté</a
+            >
+            <a href="#contact" class="text-gray-600 hover:text-green-600"
+              >Contact</a
+            >
+            <button
+              class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700" onclick="$crisp.push(['do', 'chat:open'])" 
+            >
+              Réservez par chat
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="hero-section h-screen flex items-center justify-center text-white"
+    >
+      <div class="text-center">
+        <h1 class="text-5xl font-bold mb-4">Trouvez le pied à terre idéal</h1>
+        <p class="text-xl mb-8">Rejoignez notre communauté de voyageurs nomades</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Spaces -->
+    <section id="chambres" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Bienvenue à Goclands !</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Space Card 1 -->
+          <div
+            class="booking-card bg-white rounded-xl overflow-hidden custom-shadow"
+          >
+            <img
+              src="./img/kitchen-puteaux1.png"
+              alt="Chez Zora"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">La coloc</h3>
+              <p class="text-gray-600 mb-4">Puteaux</p>
+              <div class="flex items-center mb-4">
+                <span class="text-green-600 font-bold text-xl">42€</span>
+                <span class="text-gray-500 ml-2">/nuit</span>
+              </div>
+              <div class="flex items-center space-x-4 mb-4">
+                <span
+                  class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                  >Chambre privéee</span
+                >
+                <span
+                  class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                  >Disponible maintenant</span
+                >
+              </div>
+              <button
+                class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700"
+              >
+                Réserver tout de suite
+              </button>
+            </div>
+          </div>
+
+          <!-- Space Card 2 -->
+          <div
+            class="booking-card bg-white rounded-xl overflow-hidden custom-shadow"
+          >
+            <img
+              src="./img/bedroom-puteaux1.jpg"
+              alt="Chez Mohamed"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">L'appart</h3>
+              <p class="text-gray-600 mb-4">Puteaux</p>
+              <div class="flex items-center mb-4">
+                <span class="text-green-600 font-bold text-xl">120 €</span>
+                <span class="text-gray-500 ml-2">/nuit</span>
+              </div>
+              <div class="flex items-center space-x-4 mb-4">
+                <span
+                  class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                  >Appartement entier</span
+                >
+                <span
+                  class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                  >Disponible maintenant</span
+                >
+              </div>
+              <button
+                class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700"
+              >
+              Réserver tout de suite
+              </button>
+            </div>
+          </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="communaute" class="py-20 bg-green-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Rejoignez notre communauté</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <img
+              src="/api/placeholder/600/400"
+              alt="Communauté"
+              class="rounded-xl shadow-lg"
+            />
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold mb-6">Vivez la vie moderne</h3>
+            <p class="text-gray-600 mb-6">
+              <p>Rejoignez notre communauté dynamique de professionnels, de créateurs et d'entrepreneurs. 
+                Profitez d'équipements modernes, d'événements communautaires.</p>
+            </p>
+            <ul class="space-y-4">
+              <li class="flex items-center">
+                <svg
+                  class="w-6 h-6 text-green-600 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Connexion Fibre Très Haut Débit
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-6 h-6 text-green-600 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Événements communautaires hebdomadaires
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-6 h-6 text-green-600 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Chambres meublées
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-6 h-6 text-green-600 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Support disponible 24/7
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Contactez-nous par email</h2>
+        <div class="max-w-2xl mx-auto">
+          <iframe title="Contact Form" src="https://plugins.crisp.chat/urn:crisp.im:contact-form:0/contact/a93eeb19-cb40-488f-a382-5dd894a68ca7" referrerpolicy="origin" sandbox="allow-forms allow-popups allow-scripts allow-same-origin" width="100%" height="600px" frameborder="0"></iframe>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-2xl font-bold text-green-500 mb-4">Goclands</h3>
+            <p class="text-gray-400">Trouvez le pied à terre idéal</p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Accès rapides</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Accueil</a>
+              </li>
+              <li>
+                <a href="#chambres" class="text-gray-400 hover:text-white"
+                  >Chambres</a
+                >
+              </li>
+              <li>
+                <a href="#communaute" class="text-gray-400 hover:text-white"
+                  >Communauté</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="text-gray-400 hover:text-white"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Localités</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Aix en Provence</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Paris La Défense</a>
+                <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Paris Montparnasse</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Add this right before the closing </body> tag -->
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+  <div class="bg-white rounded-lg max-w-md w-full mx-4 relative">
+    <!-- Modal Header -->
+    <div class="p-4 border-b">
+      <h3 class="text-xl font-bold" id="modalRoomTitle">Réserver</h3>
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="p-4">
+      <!-- Date Selection -->
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">
+          Dates de séjour
+        </label>
+        <div class="flex space-x-4">
+          <div class="flex-1">
+            <input 
+              type="date" 
+              id="checkIn"
+              class="w-full p-2 border rounded focus:border-green-500 focus:ring-1 focus:ring-green-500"
+              onchange="updatePrice()"
+            >
+          </div>
+          <div class="flex-1">
+            <input 
+              type="date" 
+              id="checkOut"
+              class="w-full p-2 border rounded focus:border-green-500 focus:ring-1 focus:ring-green-500"
+              onchange="updatePrice()"
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Number of Guests -->
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">
+          Nombre de voyageurs
+        </label>
+        <input 
+          type="number" 
+          id="guestCount"
+          min="1" 
+          max="4" 
+          value="1"
+          class="w-full p-2 border rounded focus:border-green-500 focus:ring-1 focus:ring-green-500"
+        >
+      </div>
+
+      <!-- Price Summary -->
+      <div id="priceSummary" class="mb-4 p-4 bg-green-50 rounded-lg hidden">
+        <h4 class="font-bold mb-2">Résumé du prix</h4>
+        <div class="flex justify-between items-center">
+          <span>Total</span>
+          <span id="totalPrice" class="text-xl font-bold">0€</span>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div id="errorMessage" class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg hidden">
+      </div>
+
+      <!-- Book Button -->
+      <button 
+        onclick="handleBooking()"
+        id="bookButton"
+        class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled
+      >
+        <span id="bookButtonText">Sélectionnez des dates</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script tag right before the closing </body> tag -->
+<script>
+let currentPrice = 0;
+let currentRoom = '';
+
+// Set min and max dates for the date inputs
+function setupDateInputs() {
+  const today = new Date();
+  const maxDate = new Date();
+  maxDate.setDate(today.getDate() + 30);
+  
+  const checkIn = document.getElementById('checkIn');
+  const checkOut = document.getElementById('checkOut');
+  
+  const todayStr = today.toISOString().split('T')[0];
+  const maxDateStr = maxDate.toISOString().split('T')[0];
+  
+  checkIn.min = todayStr;
+  checkIn.max = maxDateStr;
+  checkOut.min = todayStr;
+  checkOut.max = maxDateStr;
+}
+
+function openModal(roomTitle, pricePerNight) {
+  currentRoom = roomTitle;
+  currentPrice = pricePerNight;
+  
+  document.getElementById('modalRoomTitle').textContent = `Réserver - ${roomTitle}`;
+  document.getElementById('bookingModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  
+  setupDateInputs();
+  updatePrice();
+}
+
+function closeModal() {
+  document.getElementById('bookingModal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+  resetForm();
+}
+
+function resetForm() {
+  document.getElementById('checkIn').value = '';
+  document.getElementById('checkOut').value = '';
+  document.getElementById('guestCount').value = '1';
+  document.getElementById('priceSummary').classList.add('hidden');
+  document.getElementById('errorMessage').classList.add('hidden');
+  document.getElementById('bookButton').disabled = true;
+  document.getElementById('bookButtonText').textContent = 'Sélectionnez des dates';
+}
+
+function updatePrice() {
+  const checkIn = new Date(document.getElementById('checkIn').value);
+  const checkOut = new Date(document.getElementById('checkOut').value);
+  const bookButton = document.getElementById('bookButton');
+  const priceSummary = document.getElementById('priceSummary');
+  
+  if (checkIn && checkOut && checkOut > checkIn) {
+    const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+    const total = nights * currentPrice;
+    
+    document.getElementById('totalPrice').textContent = `${total}€`;
+    document.getElementById('bookButtonText').textContent = `Réserver maintenant • ${total}€`;
+    bookButton.disabled = false;
+    priceSummary.classList.remove('hidden');
+  } else {
+    bookButton.disabled = true;
+    priceSummary.classList.add('hidden');
+    document.getElementById('bookButtonText').textContent = 'Sélectionnez des dates';
+  }
+}
+
+async function handleBooking() {
+  const bookButton = document.getElementById('bookButton');
+  const errorMessage = document.getElementById('errorMessage');
+  const buttonText = document.getElementById('bookButtonText');
+  
+  try {
+    bookButton.disabled = true;
+    buttonText.textContent = 'Traitement en cours...';
+    errorMessage.classList.add('hidden');
+    
+    // Here you would integrate with Stripe
+    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+    
+    alert('Réservation réussie ! En production, vous seriez redirigé vers Stripe.');
+    closeModal();
+  } catch (error) {
+    errorMessage.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+    errorMessage.classList.remove('hidden');
+  } finally {
+    bookButton.disabled = false;
+    updatePrice();
+  }
+}
+
+// Update all booking buttons to open the modal
+document.addEventListener('DOMContentLoaded', function() {
+  const bookingButtons = document.querySelectorAll('.booking-card button');
+  bookingButtons.forEach(button => {
+    const card = button.closest('.booking-card');
+    const title = card.querySelector('h3').textContent;
+    const priceText = card.querySelector('.text-green-600').textContent;
+    const price = parseInt(priceText);
+    
+    button.onclick = () => openModal(title, price);
+  });
+});
+</script>
+  </body>
+</html>
